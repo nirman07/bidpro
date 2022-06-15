@@ -1,8 +1,16 @@
 import { PrimaryRegistrationForm } from "./Registration.styles";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { PrimaryButton } from "../../atoms/forms/Button/Button.styles";
-import * as Yup from "yup";
+import React, { useState } from "react";
+import Select from "react-select";
+import * as Yup from 'yup';
+
+const options = [
+  { value: "Bidder", label: "Bidder" },
+  { value: "Buyer", label: "Buyer" },
+];
 function RegistrationForm() {
+  const [selectedOption, setSelectedOption] = useState(null);
   const SignupSchema = Yup.object().shape({
     fname: Yup.string()
       .min(3, "Too Short!")
@@ -137,6 +145,10 @@ function RegistrationForm() {
               </tr>
               <tr>
                 <td>
+                <label>Category:</label>
+                <div className="app">
+                  <Select defaultValue={selectedOption} options={options} />
+                </div>
                   <label>Password:</label>
                   <Field name="password" class="main" type="password" />
                   {errors.password && touched.password ? (
