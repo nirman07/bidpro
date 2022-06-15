@@ -1,18 +1,20 @@
 
 import React from "react";
-import Textbox from '../../atoms/forms/Textbox/Textbox.atom';
-import Button from "../../atoms/forms/Button/Button.atom";
-import CheckBox from "../../atoms/forms/CheckBox/CheckBox.atom";
+import { useNavigate } from "react-router-dom";
 import Footer from "../../molecules/Footer.organism";
-import { Footer1, Footer2 } from "../../molecules/Footer.styles";
 import NavBar from "../../molecules/NavBar.organism";
 import { ProfileWrapper } from "./ProfilePage.styles";
 
-
 function ProfilePage() {
+  const navigate = useNavigate();
+  const home = () => {
+    navigate("/");
+  }
+
   return (
     <ProfileWrapper>
-     
+      <NavBar></NavBar>
+      <Footer></Footer>
     </ProfileWrapper>
   );
 }
