@@ -3,8 +3,16 @@ import * as Yup from 'yup';
 import { PrimaryLoginForm } from "./LoginForm.styles";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { PrimaryButton } from "../../atoms/forms/Button/Button.styles";
+import  {useNavigate}  from "react-router-dom";
+
 
 function LoginForm() {
+  const history = useNavigate();
+
+  const profilePage = () => {
+      history("/ProfilePage")
+  }
+  
     const SignupSchema = Yup.object().shape({
         password: Yup.string()
           .min(2, "Too Short!")
@@ -50,7 +58,8 @@ function LoginForm() {
                   ) : null}
                 </td>
                 <td>
-                  <PrimaryButton type="submit">Login</PrimaryButton>
+                  <PrimaryButton type="submit" onClick={profilePage}>Login</PrimaryButton>
+                 
                 </td>
               </tr>
               <tr>
