@@ -5,6 +5,9 @@ export const InnerNavBar = styled.div`
   display: flex;
   justify-content:space-between;
   background-color: #201f1f;
+  width: 100%;
+  z-index: 999;
+  position: fixed;
 `;
 export const InnerNavBarRight = styled.div`
 img{

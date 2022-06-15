@@ -11,13 +11,13 @@ export const PrimaryButton = styled.button`
     border-radius: 5px;
     text-transform: uppercase;
     font-weight: 150;
-    background-color: #e28236;
-    border-color: #ff9948;
+    background-color:#e71212;
+    border-color: #e71212;
   
   &:hover {
     color: #fff;
-    background-color: #e28236;
-    border-color: #e28236;
+    background-color: #e71212;
+    border-color: #e71212;
     box-shadow:2px 3px 10px black;  
   }
 `;

@@ -1,25 +1,13 @@
-import React from 'react';
-import { PrimaryTextbox } from './Textbox.styles';
-import { TextboxProps } from './Textbox.types';
+import React from "react";
+import { PrimaryTextbox } from "./Textbox.styles";
+import { TextboxProps } from "./Textbox.types";
 
-
-function Textbox(props:TextboxProps) {
+function Textbox(props: TextboxProps) {
   return (
-      
-    <PrimaryTextbox> 
-
-<input type="text" value={props.value} />
-
+    <PrimaryTextbox>
+      <input type="text" />
     </PrimaryTextbox>
-    
-    
-
   );
- 
-  
-  
 }
 
 export default Textbox;
-
-

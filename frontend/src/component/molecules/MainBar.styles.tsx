@@ -18,5 +18,8 @@ export const InnerMainBarLeft = styled.div`
   display: flex;
   height :150px;
  padding:5px;
-  margin-top:50px;
+  margin-top:20px;
+  margin-left:30px;
+  margin-bottom:50px;
+  
 `;

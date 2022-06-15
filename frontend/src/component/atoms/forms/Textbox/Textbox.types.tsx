@@ -1,5 +1,5 @@
 export interface TextboxProps{
-   value:string;
+   value?:string;
    
 
 };

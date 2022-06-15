@@ -3,18 +3,14 @@ import styled from 'styled-components';
 export const PrimaryTextbox = styled.text`
 
    vertical-align: center;
-<<<<<<< HEAD
- 
-=======
    border-radius: 5px;
-   
+   width: 50px;
    &:hover {
     color: black;
     border-color:white;
   box-shadow:1px 1px 1px black;  
   }
    
->>>>>>> e81f92b5ef638b8413e9ccf08b848389842191c6
 `;
 export const PrimaryPassword = styled.text`
 
