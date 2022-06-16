@@ -5,8 +5,28 @@ import React, { useState } from "react";
 import Select from "react-select";
 import * as Yup from "yup";
 import useHooks from "./Registration.hooks";
+import AuthServices from "../../../Services/Auth.Services";
+import Toastr from "toastr"
+
 
 function RegistrationForm() {
+
+
+  const [ user, setUser ] = useState({
+    fname: "",
+          lname: "",
+          email: "",
+          mobile_no: "",
+          houseno: "",
+          street: "",
+          city: "",
+          pin: "",
+          password: "",
+          role: "",
+          category: [],
+  })
+
+
   let { roles, categories } = useHooks();
   const SignupSchema = Yup.object().shape({
     fname: Yup.string()
@@ -68,29 +88,26 @@ function RegistrationForm() {
           // same shape as initial values
           console.log(values);
           let user = {
-            "f_name": "Shivansh",
-            "l_name": "Singh",
-            "email": "shivanshinterra5@yopmail.com",
-            "password": "12345678",
-            "mobile": {
-              "number": "00986543467",
-              "internationalNumber": "+1 00986543467",
-              "nationalNumber": "00986543467",
-              "countryCode": "US",
-              "dialCode": "+1",
-              "e164Number": "+14155552671"
-            },
-            "category_id": ["6270fc88d49ffd93156c98b9", "6270fceeb8264f84a47d85d1"],
-            "roles_id": "627110b11c9470ba145f26fb",
+            "f_name": values.fname,
+            "l_name": values.lname,
+            "email": values.email,
+            "password": values.password,
+            "mobile": values.mobile_no,
+            "category_id":values.category,
+            "roles_id":values.role,
             "address": [
               {
-                "house_no": "95a",
-                "street": "station road",
-                "city": "kolkata",
-                "pin": "700118"
+                "house_no": values.houseno,
+                "street": values.street,
+                "city": values.city,
+                "pin": values.pin
               }
             ]
           }
+          AuthServices.register(user).then((res)=>{
+            toastr.success('User Successfully Registered!', 'Now you can Log In')
+
+          })
         }}
       >
         {({
