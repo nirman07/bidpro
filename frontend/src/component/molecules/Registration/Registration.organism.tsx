@@ -6,7 +6,7 @@ import Select from "react-select";
 import * as Yup from "yup";
 import useHooks from "./Registration.hooks";
 import AuthServices from "../../../Services/Auth.Services";
-import Toastr from "toastr"
+import toastr from "toastr"
 
 
 function RegistrationForm() {
@@ -78,7 +78,7 @@ function RegistrationForm() {
           houseno: "",
           street: "",
           city: "",
-          pin: "",
+          pin: 123456,
           password: "",
           role: "",
           category: [],
@@ -92,7 +92,14 @@ function RegistrationForm() {
             "l_name": values.lname,
             "email": values.email,
             "password": values.password,
-            "mobile": values.mobile_no,
+            "mobile": {
+              "number": values.mobile_no,
+              "internationalNumber": "+1 00986543467",
+              "nationalNumber": "00986543467",
+              "countryCode": "US",
+              "dialCode": "+1",
+              "e164Number": "+14155552671"
+            },
             "category_id":values.category,
             "roles_id":values.role,
             "address": [
@@ -105,8 +112,9 @@ function RegistrationForm() {
             ]
           }
           AuthServices.register(user).then((res)=>{
-            toastr.success('User Successfully Registered!', 'Now you can Log In')
-
+            toastr.success('User Successfully Registered!', 'Now you can Log In');
+          }).catch((err)=>{
+            toastr.error('Error');
           })
         }}
       >
@@ -189,7 +197,7 @@ function RegistrationForm() {
                 </td>
                 <td>
                   <label>PinCode:</label>
-                  <Field name="Pin" class="main" type="text" />
+                  <Field name="pin" class="main" type="text" />
                   {errors.pin && touched.pin ? <div>{errors.pin}</div> : null}
                 </td>
               </tr>
@@ -253,7 +261,7 @@ function RegistrationForm() {
                 </td>
               </tr>
               <br></br>
-              <button onClick={()=>handleSubmit} type="submit" id="submit">Register</button>
+              <button type="submit" id="submit">Register</button>
             </table>
           </Form>
         )}
