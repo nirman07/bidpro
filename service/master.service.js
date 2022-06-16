@@ -56,6 +56,7 @@ class MasterService {
         let resData = await masterRepo.getCategory(cond);
         if (resData) return Promise.resolve({
             success: true,
+            data:resData,
             messageKey: "register"
         })
         else return Promise.reject({

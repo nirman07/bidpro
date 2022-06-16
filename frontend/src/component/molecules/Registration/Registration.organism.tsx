@@ -3,14 +3,11 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { PrimaryButton } from "../../atoms/forms/Button/Button.styles";
 import React, { useState } from "react";
 import Select from "react-select";
-import * as Yup from 'yup';
+import * as Yup from "yup";
+import useHooks from "./Registration.hooks";
 
-const options = [
-  { value: "Bidder", label: "Bidder" },
-  { value: "Buyer", label: "Buyer" },
-];
 function RegistrationForm() {
-  const [selectedOption, setSelectedOption] = useState(null);
+  let { roles, categories } = useHooks();
   const SignupSchema = Yup.object().shape({
     fname: Yup.string()
       .min(3, "Too Short!")
@@ -47,6 +44,8 @@ function RegistrationForm() {
     email: Yup.string()
       .email("Invalid email")
       .required("Required"),
+    role: Yup.string().required("Role Required"),
+    category: Yup.array().min(1, 'Category Required').required("Category Required"),
   });
   return (
     <PrimaryRegistrationForm>
@@ -61,14 +60,46 @@ function RegistrationForm() {
           city: "",
           pin: "",
           password: "",
+          role: "",
+          category: [],
         }}
         validationSchema={SignupSchema}
         onSubmit={(values) => {
           // same shape as initial values
           console.log(values);
+          let user = {
+            "f_name": "Shivansh",
+            "l_name": "Singh",
+            "email": "shivanshinterra5@yopmail.com",
+            "password": "12345678",
+            "mobile": {
+              "number": "00986543467",
+              "internationalNumber": "+1 00986543467",
+              "nationalNumber": "00986543467",
+              "countryCode": "US",
+              "dialCode": "+1",
+              "e164Number": "+14155552671"
+            },
+            "category_id": ["6270fc88d49ffd93156c98b9", "6270fceeb8264f84a47d85d1"],
+            "roles_id": "627110b11c9470ba145f26fb",
+            "address": [
+              {
+                "house_no": "95a",
+                "street": "station road",
+                "city": "kolkata",
+                "pin": "700118"
+              }
+            ]
+          }
         }}
       >
-        {({ errors, touched }) => (
+        {({
+          errors,
+          touched,
+          setFieldValue,
+          handleChange,
+          setFieldTouched,
+        }) => (
           <Form>
             <table>
               <tr>
@@ -145,11 +176,50 @@ function RegistrationForm() {
               </tr>
               <tr>
                 <td>
-                <label>Role:</label>
-                <div className="app">
-                  <Select defaultValue={selectedOption} options={options} />
-                </div>
-                </td><td>
+                  <label>Role:</label>
+                  <div className="app">
+                    <Select
+                      name="role"
+                      id="role"
+                      options={roles}
+                      onFocus={() => {
+                        setFieldTouched("role");
+                      }}
+                      onChange={(selectedOption: any) => {
+                        setFieldValue("role", selectedOption.value);
+                      }}
+                    />
+                  </div>
+                  {errors.role && touched.role ? (
+                    <div>{errors.role}</div>
+                  ) : null}
+                </td>
+
+                <td>
+                  <label>Category:</label>
+                  <div className="app">
+                    <Select
+                      name="category"
+                      id="category"
+                      options={categories}
+                      isMulti={true}
+                      onFocus={() => {
+                        setFieldTouched("category");
+                      }}
+                      onChange={(selectedOption: any) => {
+                        let option = selectedOption.map((val: any) => { return val.value })
+                        console.log(option)
+                        setFieldValue("category", option);
+                      }}
+                    />
+                  </div>
+                  {errors.category && touched.category ? (
+                    <div>{errors.category}</div>
+                  ) : null}
+                </td>
+              </tr>
+              <tr>
+                <td>
                   <label>Password:</label>
                   <Field name="password" class="main" type="password" />
                   {errors.password && touched.password ? (
