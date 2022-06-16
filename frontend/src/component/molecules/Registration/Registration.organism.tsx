@@ -116,6 +116,8 @@ function RegistrationForm() {
           setFieldValue,
           handleChange,
           setFieldTouched,
+          submitForm,
+          handleSubmit
         }) => (
           <Form>
             <table>
@@ -251,7 +253,7 @@ function RegistrationForm() {
                 </td>
               </tr>
               <br></br>
-              <PrimaryButton type="submit">Register</PrimaryButton>
+              <button onClick={()=>handleSubmit} type="submit" id="submit">Register</button>
             </table>
           </Form>
         )}
