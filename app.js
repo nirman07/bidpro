@@ -2,7 +2,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+const cors = require('cors');
 var mainRoute = require('./routes/routes');
 var app = express();
 
@@ -18,7 +18,7 @@ mongoose.connect(url,{autoIndex:true})
         console.log(err)
         process.exit();
     })
-
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

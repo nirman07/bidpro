@@ -3,14 +3,31 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { PrimaryButton } from "../../atoms/forms/Button/Button.styles";
 import React, { useState } from "react";
 import Select from "react-select";
-import * as Yup from 'yup';
+import * as Yup from "yup";
+import useHooks from "./Registration.hooks";
+import AuthServices from "../../../Services/Auth.Services";
+import toastr from "toastr"
 
-const options = [
-  { value: "Bidder", label: "Bidder" },
-  { value: "Buyer", label: "Buyer" },
-];
+
 function RegistrationForm() {
-  const [selectedOption, setSelectedOption] = useState(null);
+
+
+  const [ user, setUser ] = useState({
+    fname: "",
+          lname: "",
+          email: "",
+          mobile_no: "",
+          houseno: "",
+          street: "",
+          city: "",
+          pin: "",
+          password: "",
+          role: "",
+          category: [],
+  })
+
+
+  let { roles, categories } = useHooks();
   const SignupSchema = Yup.object().shape({
     fname: Yup.string()
       .min(3, "Too Short!")
@@ -47,6 +64,8 @@ function RegistrationForm() {
     email: Yup.string()
       .email("Invalid email")
       .required("Required"),
+    role: Yup.string().required("Role Required"),
+    category: Yup.array().min(1, 'Category Required').required("Category Required"),
   });
   return (
     <PrimaryRegistrationForm>
@@ -59,16 +78,55 @@ function RegistrationForm() {
           houseno: "",
           street: "",
           city: "",
-          pin: "",
+          pin: 123456,
           password: "",
+          role: "",
+          category: [],
         }}
         validationSchema={SignupSchema}
         onSubmit={(values) => {
           // same shape as initial values
           console.log(values);
+          let user = {
+            "f_name": values.fname,
+            "l_name": values.lname,
+            "email": values.email,
+            "password": values.password,
+            "mobile": {
+              "number": values.mobile_no,
+              "internationalNumber": "+1 00986543467",
+              "nationalNumber": "00986543467",
+              "countryCode": "US",
+              "dialCode": "+1",
+              "e164Number": "+14155552671"
+            },
+            "category_id":values.category,
+            "roles_id":values.role,
+            "address": [
+              {
+                "house_no": values.houseno,
+                "street": values.street,
+                "city": values.city,
+                "pin": values.pin
+              }
+            ]
+          }
+          AuthServices.register(user).then((res)=>{
+            toastr.success('User Successfully Registered!', 'Now you can Log In');
+          }).catch((err)=>{
+            toastr.error('Error');
+          })
         }}
       >
-        {({ errors, touched }) => (
+        {({
+          errors,
+          touched,
+          setFieldValue,
+          handleChange,
+          setFieldTouched,
+          submitForm,
+          handleSubmit
+        }) => (
           <Form>
             <table>
               <tr>
@@ -139,17 +197,56 @@ function RegistrationForm() {
                 </td>
                 <td>
                   <label>PinCode:</label>
-                  <Field name="Pin" class="main" type="text" />
+                  <Field name="pin" class="main" type="text" />
                   {errors.pin && touched.pin ? <div>{errors.pin}</div> : null}
                 </td>
               </tr>
               <tr>
                 <td>
-                <label>Role:</label>
-                <div className="app">
-                  <Select defaultValue={selectedOption} options={options} />
-                </div>
-                </td><td>
+                  <label>Role:</label>
+                  <div className="app">
+                    <Select
+                      name="role"
+                      id="role"
+                      options={roles}
+                      onFocus={() => {
+                        setFieldTouched("role");
+                      }}
+                      onChange={(selectedOption: any) => {
+                        setFieldValue("role", selectedOption.value);
+                      }}
+                    />
+                  </div>
+                  {errors.role && touched.role ? (
+                    <div>{errors.role}</div>
+                  ) : null}
+                </td>
+
+                <td>
+                  <label>Category:</label>
+                  <div className="app">
+                    <Select
+                      name="category"
+                      id="category"
+                      options={categories}
+                      isMulti={true}
+                      onFocus={() => {
+                        setFieldTouched("category");
+                      }}
+                      onChange={(selectedOption: any) => {
+                        let option = selectedOption.map((val: any) => { return val.value })
+                        console.log(option)
+                        setFieldValue("category", option);
+                      }}
+                    />
+                  </div>
+                  {errors.category && touched.category ? (
+                    <div>{errors.category}</div>
+                  ) : null}
+                </td>
+              </tr>
+              <tr>
+                <td>
                   <label>Password:</label>
                   <Field name="password" class="main" type="password" />
                   {errors.password && touched.password ? (
@@ -164,7 +261,7 @@ function RegistrationForm() {
                 </td>
               </tr>
               <br></br>
-              <PrimaryButton type="submit">Register</PrimaryButton>
+              <button type="submit" id="submit">Register</button>
             </table>
           </Form>
         )}
