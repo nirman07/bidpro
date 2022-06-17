@@ -78,7 +78,7 @@ function RegistrationForm() {
           houseno: "",
           street: "",
           city: "",
-          pin: 123456,
+          pin: "",
           password: "",
           role: "",
           category: [],

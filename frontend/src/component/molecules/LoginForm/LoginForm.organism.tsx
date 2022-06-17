@@ -1,12 +1,22 @@
-import React from "react";
+import React,{useState} from "react";
+import Select from "react-select";
 import * as Yup from 'yup';
 import { PrimaryLoginForm } from "./LoginForm.styles";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { PrimaryButton } from "../../atoms/forms/Button/Button.styles";
 import  {useNavigate}  from "react-router-dom";
-
+import AuthServices from "../../../Services/Auth.Services";
+import toastr from "toastr"
+import useHooks from "./LoginForm.hooks";
 
 function LoginForm() {
+  const [ user, setUser ] = useState({
+   
+          email: "",
+          password: "",
+          
+  })
+  let{ categories } = useHooks();
   const history = useNavigate();
 
   const profilePage = () => {
@@ -25,11 +35,28 @@ function LoginForm() {
   return (
     <PrimaryLoginForm>
       <Formik
-        onSubmit={(values) => {}}
+        onSubmit={(values) => {
+          console.log(values);
+          let login = {
+            "email": values.email,
+            "password": values.password,
+          }
+          AuthServices.login(login).then((res)=>{
+            toastr.success('Welcome To BIDBID');
+          }).catch((err)=>{
+            toastr.error('Error');
+          })
+        }}
         initialValues={{ password: "", email: "" }}
         validationSchema={SignupSchema}
       >
-        {({ errors, touched }) => (
+        {({ errors,
+          touched,
+          setFieldValue,
+          handleChange,
+          setFieldTouched,
+          submitForm,
+          handleSubmit }) => (
           <Form>
             {" "}
             <table>

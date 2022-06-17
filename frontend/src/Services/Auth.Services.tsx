@@ -5,22 +5,27 @@ const API_URL = "http://localhost:3532/api/v1/";
 const register = (user:any) => {
   return axios.post(API_URL + "users/register", user);
 };
-
-const login = (email:string, password:string) => {
-  return axios
-    .post(API_URL + "login", {
-      email,
-      password,
-    })
-    .then((response) => {
-      if (response.data.accessToken) {
-        localStorage.setItem("user", JSON.stringify(response.data));
-      }
-
-      return response.data;
-    });
+const item = (user:any) => {
+  return axios.post(API_URL + "items/item", user);
+};
+const login = (user:any) => {
+  return axios.post(API_URL + "users/login", user);
 };
 
+//const login = (email:string, password:string) => {
+ //return axios
+   // .post(API_URL + "users/login", {
+   //  email,
+    //  password,
+    //})
+    //.then((response) => {
+//if (response.data.accessToken) {
+      // localStorage.setItem("users", JSON.stringify(response.data));
+    // }
+
+      //return response.data;
+    ///});
+//};
 const getRoles = ()=> {
     return new Promise((resolve,reject)=>{
        axios.get(API_URL + "master/getRole").then((data)=>{
@@ -44,6 +49,7 @@ const getCategories = ()=> {
 export default {
     register,
     login,
+    item,
     getRoles,
     getCategories
 };
