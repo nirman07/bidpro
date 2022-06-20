@@ -6,7 +6,11 @@ const register = (user: any) => {
   return axios.post(API_URL + "users/register", user);
 };
 const item = (user: any) => {
-  return axios.post(API_URL + "items/item", user);
+  let token :any = ""
+  if(localStorage.getItem("token")){
+    token =localStorage.getItem("token");
+  }
+  return axios.post(API_URL + "items/item", user,{ headers: {"Authorization" : `Bearer ${JSON.parse(token)}` }});
 };
 const login = (email: string, password: string) => {
   return axios
@@ -21,7 +25,7 @@ const login = (email: string, password: string) => {
       if (userData.data.accessToken) {
         localStorage.setItem(
           "token",
-          JSON.stringify(`Bearer ${userData.data.accessToken}`)
+          JSON.stringify(userData.data.accessToken)
         );
       }
       if (userData.data.userData) {
@@ -56,14 +60,13 @@ const getCategories = () => {
   });
 };
 
-function RequireAuth({ children }) {
-  let location = useLocation();
-  if (!userData.data.accessToken) {
-    // Redirect to the /login page
-    return <Navigate to="/login" state={{ from: location }} replace />;
-  }
-
-  return children;
+function isAuthorized() {
+  let user= localStorage.getItem("user");
+  let key = localStorage.getItem("accessToken")
+  if(user && key)
+    return true
+  else
+    return false
 }
 
 
@@ -73,4 +76,5 @@ export default {
   item,
   getRoles,
   getCategories,
+  isAuthorized
 };

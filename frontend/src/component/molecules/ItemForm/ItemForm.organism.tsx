@@ -19,44 +19,6 @@ function ItemForm() {
               category: [],
       })
     let{ categories } = useHooks();
-  const SignupSchema = Yup.object().shape({
-    fname: Yup.string()
-      .min(3, "Too Short!")
-      .max(100, "Too Long!")
-      .required("Required"),
-    lname: Yup.string()
-      .min(2, "Too Short!")
-      .max(50, "Too Long!")
-      .required("Required"),
-    mobile_no: Yup.string()
-      .min(2, "Too Short!")
-      .max(20, "Too Long!")
-      .required("Required"),
-    houseno: Yup.string()
-      .min(1, "Too Short!")
-      .max(50, "Too Long!")
-      .required("Required"),
-    street: Yup.string()
-      .min(2, "Too Short!")
-      .max(200, "Too Long!")
-      .required("Required"),
-    city: Yup.string()
-      .min(1, "Too Short!")
-      .max(50, "Too Long!")
-      .required("Required"),
-    pin: Yup.string()
-      .min(5, "Too Short!")
-      .max(7, "Too Long!")
-      .required("Required"),
-    password: Yup.string()
-      .min(7, "Too Short!")
-      .max(50, "Too Long!")
-      .required("Required"),
-    email: Yup.string()
-      .email("Invalid email")
-      .required("Required"),
-      category: Yup.array().min(1, 'Category Required').required("Category Required"),
-  });
   return (
     <PrimaryItemForm>
       <Formik
@@ -68,25 +30,18 @@ function ItemForm() {
           bid_start_time: "",
           category: [],
         }}
-        validationSchema={SignupSchema}
         onSubmit={(values) => {
           // same shape as initial values
-          console.log(values);
           let item = {
             "item_name": values.item_name,
             "item_age": values.item_age,
             "item_description": values.item_description,
             "item_prize": values.item_prize,
-           
             "category_id":values.category,
-            "bid_start_time":values.bid_start_time,
-           
-            
+            "bid_start_time":values.bid_start_time
           }
           AuthServices.item(item).then((res)=>{
-            toastr.success('Your Item Is Successfully Added for Bid');
           }).catch((err)=>{
-            toastr.error('Error');
           })
         }}
       >
@@ -150,7 +105,6 @@ function ItemForm() {
                       }}
                       onChange={(selectedOption: any) => {
                         let option = selectedOption.map((val: any) => { return val.value })
-                        console.log(option)
                         setFieldValue("category", option);
                       }}
                     />
