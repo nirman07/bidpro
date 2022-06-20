@@ -9,15 +9,15 @@ export const InnerMainBar = styled.div`
 `;
 export const InnerMainBarRight = styled.div`
   img {
-    height: 550px;
+    height: 630px;
     width: 550px;
-    padding: 0px 20px 0px 112px;
+    padding: 0px 20px 0px 115px;
   }
 `;
 export const InnerMainBarLeft = styled.div`
   display: flex;
-  height :150px;
- padding:5px;
+  height :550px;
+ padding:10px;
   margin-top:20px;
   margin-left:30px;
   margin-bottom:50px;

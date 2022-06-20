@@ -54,13 +54,13 @@ export const InnerMenuBarLeft= styled.div`
 {
     font-size: 30px;
     border: 0;
-    font-family:Impact;
-    color: white;
+    font-family:arial;
+    color: black;
 
-    text-shadow: -1px 2px 0 #000,
-                          1px 2px 0 #000,
-                         1px -2px 0 #000,
-                        -1px -2px 0 #000;;
+    text-shadow: -1px 2px 0 white,
+                          1px 2px 0 white,
+                         1px -2px 0 white,
+                        -1px -2px 0 white;
 }
 #box
 {
