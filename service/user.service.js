@@ -26,7 +26,7 @@ class UserService {
           roles_id: user.roles_id,
         });
         return Promise.resolve({
-          data: accessToken,
+          data: {accessToken,userData:user},
           success: true,
         });
       } else {

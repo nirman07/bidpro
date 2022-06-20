@@ -8,11 +8,13 @@ import AuthServices from "../../../Services/Auth.Services";
 import * as Yup from 'yup';
 import Toastr from "toastr"
 function ItemForm() {
+  const [img, setImg] = useState();
+
     const [ user, setUser ] = useState({
         item_name: "",
         item_age: "",
-              item_description: "",
-              item_prize: "",
+        item_description: "",
+          item_prize: "",
               bid_start_time: "",
               category: [],
       })
@@ -166,6 +168,13 @@ function ItemForm() {
                 </td>
                 
               </tr>
+              <tr> <td>
+                  <label>Item Image:</label>
+                  <Field name="Item_Image" class="main" type="file" />
+                  {errors.bid_start_time && touched.bid_start_time ? (
+                    <div>{errors.bid_start_time}</div>
+                  ) : null}
+                </td></tr>
               
               <br></br>
               <PrimaryButton type="submit">ADD</PrimaryButton>
