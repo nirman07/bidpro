@@ -29,6 +29,8 @@ function RegistrationForm() {
 
   let { roles, categories } = useHooks();
   const SignupSchema = Yup.object().shape({
+
+    
     fname: Yup.string()
       .min(3, "Too Short!")
       .max(100, "Too Long!")
@@ -66,6 +68,7 @@ function RegistrationForm() {
       .required("Required"),
     role: Yup.string().required("Role Required"),
     category: Yup.array().min(1, 'Category Required').required("Category Required"),
+ 
   });
   return (
     <PrimaryRegistrationForm>
@@ -87,6 +90,7 @@ function RegistrationForm() {
         onSubmit={(values) => {
           // same shape as initial values
           console.log(values);
+         
           let user = {
             "f_name": values.fname,
             "l_name": values.lname,

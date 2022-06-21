@@ -43,6 +43,11 @@ const itemSchema = new Schema({
     default: true,
     require: true,
   },
+  item_image:
+  {
+    type:String,
+  },
+
 });
 
 let items = mongoose.model("items", itemSchema);

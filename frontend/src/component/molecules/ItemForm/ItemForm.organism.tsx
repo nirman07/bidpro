@@ -4,20 +4,53 @@ import { PrimaryButton } from "../../atoms/forms/Button/Button.styles";
 import React, { useState } from "react";
 import Select from "react-select";
 import useHooks from "./Item.hooks";
+import { useNavigate } from "react-router-dom";
 import AuthServices from "../../../Services/Auth.Services";
 import * as Yup from 'yup';
 import Toastr from "toastr"
-function ItemForm() {
-  const [img, setImg] = useState();
 
-    const [ user, setUser ] = useState({
-        item_name: "",
-        item_age: "",
-        item_description: "",
-          item_prize: "",
-              bid_start_time: "",
-              category: [],
-      })
+function ItemForm() {
+  const history = useNavigate();
+
+  const ProfilePage = () => {
+      history("/Profilepage")
+  }
+
+  const [ user, setUser ] = useState({
+    item_name: "",
+    item_age: "",
+    item_description: "",
+      item_prize: "",
+          bid_start_time: "",
+          item_image:"",
+          category: [],
+
+  })
+  const [img, setImg] = useState();
+  const SignupSchema = Yup.object().shape({
+  item_name: Yup.string()
+  .min(3, "Too Short!")
+  .max(100, "Too Long!")
+  .required("Required"),
+item_age: Yup.string()
+  .min(2, "Too Short!")
+  .max(100, "Too Long!")
+  .required("Required"),
+item_description: Yup.string()
+  .min(10, "Too Short!")
+  .max(200, "Too Long!")
+  .required("Required"),
+item_prize: Yup.string()
+  .min(1, "Too Short!")
+  .max(50, "Too Long!")
+  .required("Required"),
+  item_image: Yup.string()
+  .required("Required"),
+bid_start_time: Yup.string()
+  .required("Required"),
+  category: Yup.array().min(1, 'Category Required').required("Category Required"),
+});
+   
     let{ categories } = useHooks();
   return (
     <PrimaryItemForm>
@@ -28,8 +61,10 @@ function ItemForm() {
           item_description: "",
           item_prize: "",
           bid_start_time: "",
+          item_image:null,
           category: [],
         }}
+        validationSchema={SignupSchema}
         onSubmit={(values) => {
           // same shape as initial values
           let item = {
@@ -38,7 +73,8 @@ function ItemForm() {
             "item_description": values.item_description,
             "item_prize": values.item_prize,
             "category_id":values.category,
-            "bid_start_time":values.bid_start_time
+            "bid_start_time":values.bid_start_time,
+            "item_image":values.item_image,
           }
           AuthServices.item(item).then((res)=>{
           }).catch((err)=>{
@@ -124,7 +160,7 @@ function ItemForm() {
               </tr>
               <tr> <td>
                   <label>Item Image:</label>
-                  <Field name="Item_Image" class="main" type="file" />
+                  <Field name="item_image" class="main" type="file" />
                   {errors.bid_start_time && touched.bid_start_time ? (
                     <div>{errors.bid_start_time}</div>
                   ) : null}
