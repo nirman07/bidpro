@@ -56,17 +56,6 @@ const getCategories = () => {
   });
 };
 
-function RequireAuth({ children }) {
-  let location = useLocation();
-  if (!userData.data.accessToken) {
-    // Redirect to the /login page
-    return <Navigate to="/login" state={{ from: location }} replace />;
-  }
-
-  return children;
-}
-
-
 export default {
   register,
   login,

@@ -10,10 +10,10 @@ import toastr from "toastr";
 import useHooks from "./LoginForm.hooks";
 
 function LoginForm() {
-  const history = useNavigate();
+  const navigate = useNavigate();
 
   const ProfilePage = () => {
-      history("/Profilepage")
+      navigate("/Profilepage")
   }
 
   const SignupSchema = Yup.object().shape({
