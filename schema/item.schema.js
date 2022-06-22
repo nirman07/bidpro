@@ -21,7 +21,7 @@ const itemSchema = new Schema({
     trim: true,
   },
   item_prize: {
-    type: Number,
+    type: String,
     require: true,
   },
   bid_start_time: {

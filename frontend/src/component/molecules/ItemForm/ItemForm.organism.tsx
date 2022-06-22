@@ -26,14 +26,13 @@ function ItemForm() {
           category: [],
 
   })
-  const [img, setImg] = useState();
   const SignupSchema = Yup.object().shape({
   item_name: Yup.string()
   .min(3, "Too Short!")
   .max(100, "Too Long!")
   .required("Required"),
 item_age: Yup.string()
-  .min(2, "Too Short!")
+  .min(0, "Too Short!")
   .max(100, "Too Long!")
   .required("Required"),
 item_description: Yup.string()
@@ -104,7 +103,7 @@ bid_start_time: Yup.string()
                   ) : null}
                 </td>
                 <td>
-                  <label>Item Age:</label>
+                  <label>Item Age(in Year):</label>
                   <Field name="item_age" class="main" type="text" />
                   {errors.item_age && touched.item_age ? (
                     <div>{errors.item_age}</div>

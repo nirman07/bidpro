@@ -18,6 +18,12 @@ class UserRepo {
     let userData = new UserCredSchema(Object.assign({}, data));
     return userData.save();
   };
+
+  getUser= async(cond)=>{
+    return UserSchema.find(cond)
+    
+};
+
 }
 
 module.exports = {

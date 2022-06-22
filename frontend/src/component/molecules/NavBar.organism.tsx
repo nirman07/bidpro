@@ -20,10 +20,9 @@ function NavBar() {
         <InnerNavBarLeft>
           <InnerNavBarLeftDiv>Home</InnerNavBarLeftDiv>
           <InnerNavBarLeftDiv>About</InnerNavBarLeftDiv>
-          <InnerNavBarLeftDiv>Pricing</InnerNavBarLeftDiv>
-          <InnerNavBarLeftDiv>Blog</InnerNavBarLeftDiv>
-          <InnerNavBarLeftDiv>Sign Up</InnerNavBarLeftDiv>
-          <InnerNavBarLeftDiv>Login</InnerNavBarLeftDiv>
+          <InnerNavBarLeftDiv>Bids</InnerNavBarLeftDiv>
+          <InnerNavBarLeftDiv>Wishlist</InnerNavBarLeftDiv>
+         
 
         </InnerNavBarLeft>
       </InnerNavBar>

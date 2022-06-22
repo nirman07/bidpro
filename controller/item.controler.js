@@ -22,6 +22,15 @@ class ItemController extends BaseController {
             this.renderError(req,res,err)
         }
     }
+    getItem= async (req, res, next) => {
+        try {
+            let serData = await itemService.getItem();
+            this.renderJSON(req,res,serData)
+        }
+        catch (err) {
+            this.renderError(req,res,err)
+        }
+    }
     
 };
 
