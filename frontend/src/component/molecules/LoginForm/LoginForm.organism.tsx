@@ -36,12 +36,10 @@ function LoginForm() {
           };
           AuthServices.login(login.email, login.password)
             .then((res) => {
-             
-              toastr.success("Welcome To BIDBID");
+        
              
             })
             .catch((err) => {
-              toastr.error("Error");
             });
         }}
         initialValues={{ password: "", email: "" }}
@@ -84,7 +82,7 @@ function LoginForm() {
                   ) : null}
                 </td>
                 <td>
-                  <PrimaryButton type="submit" onClick={ProfilePage}>
+                  <PrimaryButton type="submit">
                     Login
                   </PrimaryButton>
                 </td>

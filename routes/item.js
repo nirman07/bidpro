@@ -6,6 +6,6 @@ var router = express.Router();
 /* GET users listing. */
 
 router.post("/item",  verifyUser,itemController.item);
-
+router.get("/getItem", itemController.getItem);
 
 module.exports = router;

@@ -18,6 +18,7 @@ function App() {
             <Routes>
                 <Route  path="" 
                     element={<HomePage></HomePage>} />
+
                 <Route  path="/ProfilePage" 
                     element={<ProfilePage/>} />
                     <Route  path="/BidPage" 

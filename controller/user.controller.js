@@ -38,6 +38,15 @@ class UserController extends BaseController {
             this.renderError(req,res,err)
         }
     }
+    getUser= async (req, res, next) => {
+        try {
+            let serData = await userService.getUser();
+            this.renderJSON(req,res,serData)
+        }
+        catch (err) {
+            this.renderError(req,res,err)
+        }
+    }
 };
 
 

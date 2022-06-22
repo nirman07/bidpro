@@ -13,8 +13,8 @@ function RegistrationForm() {
 
 
   const [ user, setUser ] = useState({
-    fname: "",
-          lname: "",
+    f_name: "",
+          l_name: "",
           email: "",
           mobile_no: "",
           houseno: "",
@@ -29,11 +29,13 @@ function RegistrationForm() {
 
   let { roles, categories } = useHooks();
   const SignupSchema = Yup.object().shape({
-    fname: Yup.string()
+
+    
+    f_name: Yup.string()
       .min(3, "Too Short!")
       .max(100, "Too Long!")
       .required("Required"),
-    lname: Yup.string()
+    l_name: Yup.string()
       .min(2, "Too Short!")
       .max(50, "Too Long!")
       .required("Required"),
@@ -66,13 +68,14 @@ function RegistrationForm() {
       .required("Required"),
     role: Yup.string().required("Role Required"),
     category: Yup.array().min(1, 'Category Required').required("Category Required"),
+ 
   });
   return (
     <PrimaryRegistrationForm>
       <Formik
         initialValues={{
-          fname: "",
-          lname: "",
+          f_name: "",
+          l_name: "",
           email: "",
           mobile_no: "",
           houseno: "",
@@ -87,9 +90,10 @@ function RegistrationForm() {
         onSubmit={(values) => {
           // same shape as initial values
           console.log(values);
+         
           let user = {
-            "f_name": values.fname,
-            "l_name": values.lname,
+            "f_name": values.f_name,
+            "l_name": values.l_name,
             "email": values.email,
             "password": values.password,
             "mobile": {
@@ -142,16 +146,16 @@ function RegistrationForm() {
               <tr>
                 <td>
                   <label>First Name:</label>
-                  <Field name="fname" class="main" type="text" />
-                  {errors.fname && touched.fname ? (
-                    <div>{errors.fname}</div>
+                  <Field name="f_name" class="main" type="text" />
+                  {errors.f_name && touched.f_name ? (
+                    <div>{errors.f_name}</div>
                   ) : null}
                 </td>
                 <td>
                   <label>Last Name:</label>
-                  <Field name="lname" class="main" type="text" />
-                  {errors.lname && touched.lname ? (
-                    <div>{errors.lname}</div>
+                  <Field name="l_name" class="main" type="text" />
+                  {errors.l_name && touched.l_name ? (
+                    <div>{errors.l_name}</div>
                   ) : null}
                 </td>
               </tr>

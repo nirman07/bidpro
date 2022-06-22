@@ -4,59 +4,53 @@ import { PrimaryButton } from "../../atoms/forms/Button/Button.styles";
 import React, { useState } from "react";
 import Select from "react-select";
 import useHooks from "./Item.hooks";
+import { useNavigate } from "react-router-dom";
 import AuthServices from "../../../Services/Auth.Services";
 import * as Yup from 'yup';
 import Toastr from "toastr"
-function ItemForm() {
-  const [img, setImg] = useState();
 
-    const [ user, setUser ] = useState({
-        item_name: "",
-        item_age: "",
-        item_description: "",
-          item_prize: "",
-              bid_start_time: "",
-              category: [],
-      })
-    let{ categories } = useHooks();
+function ItemForm() {
+  const history = useNavigate();
+
+  const ProfilePage = () => {
+      history("/Profilepage")
+  }
+
+  const [ user, setUser ] = useState({
+    item_name: "",
+    item_age: "",
+    item_description: "",
+      item_prize: "",
+          bid_start_time: "",
+          item_image:"",
+          category: [],
+
+  })
   const SignupSchema = Yup.object().shape({
-    fname: Yup.string()
-      .min(3, "Too Short!")
-      .max(100, "Too Long!")
-      .required("Required"),
-    lname: Yup.string()
-      .min(2, "Too Short!")
-      .max(50, "Too Long!")
-      .required("Required"),
-    mobile_no: Yup.string()
-      .min(2, "Too Short!")
-      .max(20, "Too Long!")
-      .required("Required"),
-    houseno: Yup.string()
-      .min(1, "Too Short!")
-      .max(50, "Too Long!")
-      .required("Required"),
-    street: Yup.string()
-      .min(2, "Too Short!")
-      .max(200, "Too Long!")
-      .required("Required"),
-    city: Yup.string()
-      .min(1, "Too Short!")
-      .max(50, "Too Long!")
-      .required("Required"),
-    pin: Yup.string()
-      .min(5, "Too Short!")
-      .max(7, "Too Long!")
-      .required("Required"),
-    password: Yup.string()
-      .min(7, "Too Short!")
-      .max(50, "Too Long!")
-      .required("Required"),
-    email: Yup.string()
-      .email("Invalid email")
-      .required("Required"),
-      category: Yup.array().min(1, 'Category Required').required("Category Required"),
-  });
+  item_name: Yup.string()
+  .min(3, "Too Short!")
+  .max(100, "Too Long!")
+  .required("Required"),
+item_age: Yup.string()
+  .min(0, "Too Short!")
+  .max(100, "Too Long!")
+  .required("Required"),
+item_description: Yup.string()
+  .min(10, "Too Short!")
+  .max(200, "Too Long!")
+  .required("Required"),
+item_prize: Yup.string()
+  .min(1, "Too Short!")
+  .max(50, "Too Long!")
+  .required("Required"),
+  item_image: Yup.string()
+  .required("Required"),
+bid_start_time: Yup.string()
+  .required("Required"),
+  category: Yup.array().min(1, 'Category Required').required("Category Required"),
+});
+   
+    let{ categories } = useHooks();
   return (
     <PrimaryItemForm>
       <Formik
@@ -66,27 +60,23 @@ function ItemForm() {
           item_description: "",
           item_prize: "",
           bid_start_time: "",
+          item_image:null,
           category: [],
         }}
         validationSchema={SignupSchema}
         onSubmit={(values) => {
           // same shape as initial values
-          console.log(values);
           let item = {
             "item_name": values.item_name,
             "item_age": values.item_age,
             "item_description": values.item_description,
             "item_prize": values.item_prize,
-           
             "category_id":values.category,
             "bid_start_time":values.bid_start_time,
-           
-            
+            "item_image":values.item_image,
           }
           AuthServices.item(item).then((res)=>{
-            toastr.success('Your Item Is Successfully Added for Bid');
           }).catch((err)=>{
-            toastr.error('Error');
           })
         }}
       >
@@ -113,7 +103,7 @@ function ItemForm() {
                   ) : null}
                 </td>
                 <td>
-                  <label>Item Age:</label>
+                  <label>Item Age(in Year):</label>
                   <Field name="item_age" class="main" type="text" />
                   {errors.item_age && touched.item_age ? (
                     <div>{errors.item_age}</div>
@@ -150,7 +140,6 @@ function ItemForm() {
                       }}
                       onChange={(selectedOption: any) => {
                         let option = selectedOption.map((val: any) => { return val.value })
-                        console.log(option)
                         setFieldValue("category", option);
                       }}
                     />
@@ -170,7 +159,7 @@ function ItemForm() {
               </tr>
               <tr> <td>
                   <label>Item Image:</label>
-                  <Field name="Item_Image" class="main" type="file" />
+                  <Field name="item_image" class="main" type="file" />
                   {errors.bid_start_time && touched.bid_start_time ? (
                     <div>{errors.bid_start_time}</div>
                   ) : null}

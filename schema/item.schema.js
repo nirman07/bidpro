@@ -21,7 +21,7 @@ const itemSchema = new Schema({
     trim: true,
   },
   item_prize: {
-    type: Number,
+    type: String,
     require: true,
   },
   bid_start_time: {
@@ -43,6 +43,11 @@ const itemSchema = new Schema({
     default: true,
     require: true,
   },
+  item_image:
+  {
+    type:String,
+  },
+
 });
 
 let items = mongoose.model("items", itemSchema);

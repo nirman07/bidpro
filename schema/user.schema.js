@@ -1,14 +1,15 @@
+const { string } = require("joi");
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-  fname: {
+  f_name: {
     type: String,
     require: true,
     lowercase: true,
     trim: true,
   },
-  lname: {
+  l_name: {
     type: String,
     lowercase: true,
     trim: true,
@@ -50,7 +51,7 @@ const userSchema = new Schema({
       pin: { type: String, require: true, trim: true },
     },
   ],
-
+ 
   is_active: {
     type: Boolean,
     default: true,

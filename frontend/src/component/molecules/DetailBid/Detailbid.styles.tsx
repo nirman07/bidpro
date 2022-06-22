@@ -12,7 +12,7 @@ a {
   position: absolute;
   left: -120px;
   transition: 0.3s;
-  padding: 15px;
+  padding: 0px;
   width: 100px;
   text-decoration: none;
   font-size: 20px;
@@ -57,10 +57,10 @@ export const InnerMenuBarLeft= styled.div`
 h1
 {
     font-size: 30px;
-    font-family:Brush Script MT;
+    font-family:arial;
  color:red;
 margin-right: 50px;
-padding:20px;
+padding:5px;
     text-shadow:  1px 2px 0 black;
 }
       
@@ -82,7 +82,7 @@ a {
   position: absolute;
   right: -120px;
   transition: 0.3s;
-  padding: 15px;
+  padding: 0px;
   width: 100px;
   text-decoration: none;
   font-size: 20px;
@@ -116,7 +116,7 @@ a {
 ul {
   list-style-type: none;
   font-size: 20px;
-  font-family:forte;
+  font-family:arial;
   text-transform: uppercase;
   position: relative;
   animation: effect 2s linear infinite;
@@ -141,6 +141,6 @@ ul {
 export const InnerMenuBarLeftDiv= styled.div`
 display: flex;
 justify-content: space-between;
-padding: 5px 10px 10px 10px;
+padding: 5px ;
 color: black;
 `;

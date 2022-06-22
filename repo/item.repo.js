@@ -6,7 +6,11 @@ class ItemRepo {
         let itemData = new ItemSchema(Object.assign({},data))
         return itemData.save(data)
         
-    }
+    };
+    getItem= async(cond)=>{
+        return ItemSchema.find(cond)
+        
+    };
 }
 
 
