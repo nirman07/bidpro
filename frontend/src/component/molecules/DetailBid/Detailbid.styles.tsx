@@ -2,22 +2,34 @@ import styled from "styled-components";
 
 export const PrimaryMenuBar = styled.div``;
 export const InnerMenuBar = styled.div`
-  display: flex;
-  justify-content:space-between;
-  background-color: white;
-  padding-top: 70px;
+  width: 100%;
+  position:flex;
+  border: 1px solid grey;
+  border-radius:7px;
+  display: table;
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.3); /* Black w/opacity/see-through */
+  font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  color:white;
+  font-size: 1.1em;
+  line-height: 1.5;
+  padding: 5px;
+  box-shadow: 1px 1px 10px black;
 `;
 export const InnerMenuBarRight = styled.div`
 a {
-  position: absolute;
-  left: -120px;
-  transition: 0.3s;
-  padding: 0px;
-  width: 100px;
-  text-decoration: none;
-  font-size: 20px;
-  color: white;
-  border-radius: 0 5px 5px 0;
+  width: 5%;
+  border: 1px solid grey;
+  border-radius:7px;
+  display: table;
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.3); /* Black w/opacity/see-through */
+  font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  color:white;
+  font-size: 1.1em;
+  line-height: 1.5;
+  padding: 5px;
+  box-shadow: 1px 1px 10px black;
 }
 
  a:hover {
@@ -79,15 +91,18 @@ padding:5px;
 
 
 a {
-  position: absolute;
-  right: -120px;
-  transition: 0.3s;
-  padding: 0px;
-  width: 100px;
-  text-decoration: none;
-  font-size: 20px;
-  color: white;
-  border-radius: 5px 5px 5px 5px;
+  width: 5%;
+  border: 1px solid grey;
+  border-radius:7px;
+  display: table;
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.3); /* Black w/opacity/see-through */
+  font-family: Arial, Helvetica, sans-serif;
+  color:white;
+  font-size: 1.1em;
+  line-height: 1.5;
+  padding: 5px;
+  box-shadow: 1px 1px 10px black;
 }
 
  a:hover {
@@ -116,7 +131,7 @@ a {
 ul {
   list-style-type: none;
   font-size: 20px;
-  font-family:arial;
+  
   text-transform: uppercase;
   position: relative;
   animation: effect 2s linear infinite;

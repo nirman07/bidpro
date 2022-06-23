@@ -83,7 +83,7 @@ function LoginForm() {
                 </td>
                 <td>
                   <PrimaryButton type="submit">
-                    Login
+                    LOGIN
                   </PrimaryButton>
                 </td>
               </tr>

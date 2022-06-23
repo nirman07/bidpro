@@ -7,17 +7,18 @@ import {
   InnerMainBarRight,
   PrimaryMainBar,
 } from "./ItemBar.styles";
-import Logo from "./download5.png";
+
+import Logo2 from "./download10.png";
 function MainBar() {
   return (
     <PrimaryMainBar>
-      <InnerMainBar>
+      <InnerMainBar style={{backgroundImage: `url(${Logo2})`}}>
       <InnerMainBarRight>
-          <img src={Logo} alt={Logo}></img>
+        
         </InnerMainBarRight>
         <InnerMainBarLeft>
         <ItemForm></ItemForm>
-        <img src={Logo} alt={Logo}></img>
+     
         </InnerMainBarLeft>
        
       </InnerMainBar>

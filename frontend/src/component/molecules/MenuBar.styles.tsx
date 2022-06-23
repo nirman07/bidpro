@@ -9,9 +9,12 @@ export const InnerMenuBar = styled.div`
 `;
 export const InnerMenuBarRight = styled.div`
 img{
-    height: 128px;
+    height: 148px;
     width: 320px;
     padding:2px 1px 1px 55px ;
+    
+
+
 }
 `;
 export const InnerMenuBarLeft= styled.div`

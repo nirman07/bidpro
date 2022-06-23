@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const PrimaryFooter = styled.div`
   display: flex;
-  background: #043f56;
+  background: black;
   padding: 90px;
   align-items: center;
   flex-direction: column;
@@ -20,7 +20,7 @@ export const Footer1 = styled.div`
 export const Footer2 = styled.div`
   display: flex;
   justify-content: space-between;
-  color: white;
+  color: goldenrod;
   padding: 10px;
   text-decoration: underline;
 `;
@@ -28,7 +28,7 @@ export const Footer2 = styled.div`
 export const Footer3 = styled.div`
   display: flex;
   justify-content: space-between;
-  color: white;
+  color: goldenrod;
 `;
 export const Footer4 = styled.div`
   padding: 10px;
@@ -39,7 +39,7 @@ export const Footer5 = styled.div`
   padding:5px 10px 5px 0px;
   margin-right: 50px;
   align-items: right;
-  color: white;
+  color: goldenrod;
 `;
 
 

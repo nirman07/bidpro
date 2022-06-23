@@ -48,16 +48,18 @@ a {
   background-color: #555
 }
 img{
-    height: 128px;
+    height: 148px;
     width: 320px;
     padding:2px 1px 1px 55px ;
+    margin-top: 35px;
+    margin-bottom:35px;
 }
 `;
 export const InnerMenuBarLeft= styled.div`
 h1
 {
     font-size: 30px;
-    font-family:Arial, Helvetica, sans-serif;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
  color:red;
 margin-right: 50px;
 padding:20px;
@@ -116,7 +118,7 @@ a {
 ul {
   list-style-type: none;
   font-size: 20px;
-  font-family:Arial, Helvetica, sans-serif;
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   text-transform: uppercase;
   position: relative;
   animation: effect 2s linear infinite;
