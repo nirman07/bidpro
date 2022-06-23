@@ -10,7 +10,7 @@ export const InnerMainBar = styled.div`
 export const InnerMainBarRight = styled.div`
   img {
     height: 630px;
-    width: 550px;
+    width: 600px;
     padding: 0px 20px 0px 115px;
   }
 `;

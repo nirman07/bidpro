@@ -18,6 +18,7 @@ function ProfilePage() {
     <ProfileWrapper>
       <NavBar></NavBar>
       <Addbid></Addbid>
+     
   <DetailBid></DetailBid>
       <Footer></Footer>
     </ProfileWrapper>

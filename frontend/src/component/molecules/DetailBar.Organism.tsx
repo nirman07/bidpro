@@ -12,6 +12,7 @@ function DetailBar() {
   return (
     <PrimaryMainBar>
       <InnerMainBar>
+      
         <InnerMainBarRight>
         <img src={Logo} alt={Logo}></img>
         </InnerMainBarRight>

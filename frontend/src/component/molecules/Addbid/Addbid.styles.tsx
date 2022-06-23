@@ -57,7 +57,7 @@ export const InnerMenuBarLeft= styled.div`
 h1
 {
     font-size: 30px;
-    font-family:Brush Script MT;
+    font-family:Arial, Helvetica, sans-serif;
  color:red;
 margin-right: 50px;
 padding:20px;
@@ -116,7 +116,7 @@ a {
 ul {
   list-style-type: none;
   font-size: 20px;
-  font-family:forte;
+  font-family:Arial, Helvetica, sans-serif;
   text-transform: uppercase;
   position: relative;
   animation: effect 2s linear infinite;
