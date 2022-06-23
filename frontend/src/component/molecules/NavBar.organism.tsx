@@ -9,11 +9,12 @@ import {
   PrimaryNavBar,
 } from "./NavBarr.styles";
 import Logo from "./download2.png";
+import Logo3 from "./download12.jpg";
 import { useHref } from "react-router-dom";
 function NavBar() {
   return (
     <PrimaryNavBar>
-      <InnerNavBar>
+      <InnerNavBar style={{backgroundImage: `url(${Logo3})`}} >
         <InnerNavBarRight>
           <img src={Logo} alt={Logo}></img>
         </InnerNavBarRight>

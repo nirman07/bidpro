@@ -265,7 +265,10 @@ function RegistrationForm() {
                 </td>
               </tr>
               <br></br>
-              <button type="submit" id="submit">Register</button>
+              <PrimaryButton type="submit" id="submit">
+                    SIGN UP
+                  </PrimaryButton>
+             
             </table>
           </Form>
         )}
